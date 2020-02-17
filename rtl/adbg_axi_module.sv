@@ -87,6 +87,8 @@ module adbg_axi_module
 		input  logic                                module_select_i,
 		output logic                                top_inhibit_o,
 		input  logic                                trstn_i,
+		
+		output logic                                axi_busy_o,
 
 		// AXI4 MASTER
 		//***************************************
@@ -484,6 +486,8 @@ module adbg_axi_module
         .rdy_o           (biu_ready),
         .err_o           (biu_err),
         .word_size_i     (word_size_bytes),
+        
+        .axi_busy_o      (axi_busy_o),
 
         .axi_aclk(axi_aclk),
         .axi_aresetn(axi_aresetn),

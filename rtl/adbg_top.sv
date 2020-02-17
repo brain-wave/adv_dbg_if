@@ -74,6 +74,9 @@ module adbg_top
         output logic [NB_CORES-1:0]        cpu_we_o,
         input  logic [NB_CORES-1:0]        cpu_ack_i,
         output logic [NB_CORES-1:0]        cpu_rst_o,
+        
+        // Busy signal
+        output logic                       axi_busy_o,
 
 		// AXI4 MASTER
 		//***************************************
@@ -218,6 +221,8 @@ end
         .module_select_i  (module_selects[0]),
         .top_inhibit_o    (module_inhibit[0]),
         .trstn_i          (trstn_i),
+        
+        .axi_busy_o       (axi_busy_o),
 
         .axi_aclk(axi_aclk),
         .axi_aresetn(axi_aresetn),

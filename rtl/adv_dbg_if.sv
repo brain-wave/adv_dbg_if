@@ -41,6 +41,9 @@ module adv_dbg_if
         output logic [NB_CORES-1:0]        cpu_we_o,
         input  logic [NB_CORES-1:0]        cpu_ack_i,
         output logic [NB_CORES-1:0]        cpu_rst_o,
+        
+        // Busy signal
+        output logic                       axi_busy_o,
 		
 		// AXI4 MASTER
 		//***************************************
@@ -171,6 +174,9 @@ adbg_top #(
 
                 // Instructions
                 .debug_select_i(s_debug_select),
+                
+                // Busy signal
+                .axi_busy_o(axi_busy_o),
 
                 // CPU signals
                 .cpu_addr_o(cpu_addr_o), 

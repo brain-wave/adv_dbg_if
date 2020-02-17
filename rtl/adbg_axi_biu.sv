@@ -82,6 +82,9 @@ module adbg_axi_biu
     output logic                        rdy_o,
     output logic                        err_o,
     input  logic                  [3:0] word_size_i,  // 1,2, or 4
+    
+    // Busy signal
+    output logic                        axi_busy_o,
 
     // AXI4 MASTER
     //***************************************
@@ -515,10 +518,12 @@ module adbg_axi_biu
     rdy_sync_en         = 1'b0;
     data_o_en           = 1'b0;
     err_en              = 1'b0;
+    axi_busy_o              = 1'b1;
 
     case (axi_fsm_state)
       S_IDLE:
       begin
+        axi_busy_o = 1'b0;
         if(start_toggle)
           next_fsm_state = S_AXIADDR;  // Don't go to next state for 1-cycle transfer
         else
